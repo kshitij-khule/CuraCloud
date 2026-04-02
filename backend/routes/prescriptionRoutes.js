@@ -3,14 +3,14 @@ const auth = require("../middleware/authMiddleware");
 const role = require("../middleware/roleMiddleware");
 
 const {
-  createAppointment,
-  getDoctorAppointments
-} = require("../controllers/appointmentController");
+  createPrescription,
+  getPrescriptions
+} = require("../controllers/prescriptionController");
 
-// ✅ ONLY PATIENT CAN BOOK
-router.post("/", auth, role("patient"), createAppointment);
+// ONLY DOCTOR CAN ADD PRESCRIPTION
+router.post("/", auth, role("doctor"), createPrescription);
 
-// ✅ ONLY DOCTOR CAN VIEW
-router.get("/doctor/:id", auth, role("doctor"), getDoctorAppointments);
+// PATIENT CAN VIEW THEIR PRESCRIPTIONS
+router.get("/:patient_id", auth, getPrescriptions);
 
 module.exports = router;

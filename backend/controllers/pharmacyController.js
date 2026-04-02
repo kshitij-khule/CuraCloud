@@ -3,11 +3,11 @@ const pool = require("../config/db");
 // Add medicine
 exports.addMedicine = async (req, res) => {
   try {
-    const { pharmacy_id, name, stock } = req.body;
+    const { pharmacy_id, name, stock, price } = req.body;
 
     const result = await pool.query(
-      "INSERT INTO medicines (pharmacy_id, name, stock) VALUES ($1,$2,$3) RETURNING *",
-      [pharmacy_id, name, stock]
+      "INSERT INTO medicines (pharmacy_id, name, stock, price) VALUES ($1,$2,$3,$4) RETURNING *",
+      [pharmacy_id, name, stock, price || 0]
     );
 
     res.json(result.rows[0]);
@@ -15,7 +15,6 @@ exports.addMedicine = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
-
 // Search medicine
 exports.searchMedicine = async (req, res) => {
   try {

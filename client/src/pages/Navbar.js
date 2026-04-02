@@ -8,7 +8,7 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <h3>Healthcare App</h3>
+      <h3>CuraCloud</h3>
 
       <div>
         👤 {user?.name}

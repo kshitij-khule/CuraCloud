@@ -32,3 +32,19 @@ exports.getDoctorAppointments = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
+// Get patient appointments
+exports.getPatientAppointments = async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT a.*, u.name as doctor_name 
+       FROM appointments a
+       JOIN users u ON a.doctor_id = u.id
+       WHERE a.patient_id=$1`,
+      [req.params.id]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};

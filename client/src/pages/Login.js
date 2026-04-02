@@ -26,25 +26,25 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-
+  <div className="login-wrapper">
+    <div className="login-box">
+      <h2>Welcome Back</h2>
+      <p className="login-subtitle">Sign in to your CuraCloud account</p>
       <input
-        placeholder="Email"
+        placeholder="Email address"
         onChange={(e) => setEmail(e.target.value)}
       />
-
       <input
         type="password"
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
-
-      <button onClick={handleLogin}>
-        Login
+      <button onClick={handleLogin} style={{width: '100%', marginTop: '16px'}}>
+        Sign In
       </button>
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;

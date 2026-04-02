@@ -4,9 +4,11 @@ const role = require("../middleware/roleMiddleware");
 
 const {
   createAppointment,
-  getDoctorAppointments
+  getDoctorAppointments,
+  getPatientAppointments
 } = require("../controllers/appointmentController");
 
+router.get("/patient/:id", auth, role("patient"), getPatientAppointments);
 // ✅ ONLY PATIENT CAN BOOK
 router.post("/", auth, role("patient"), createAppointment);
 

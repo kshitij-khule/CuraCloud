@@ -23,6 +23,12 @@ function Sidebar() {
             <li><Link to="/dashboard/add-prescription">Add Prescription</Link></li>
           </>
         )}
+
+        {user?.role === "pharmacy" && (
+          <>
+            <li><Link to="/dashboard/medicines">Medicines</Link></li>
+          </>
+        )}
       </ul>
     </div>
   );

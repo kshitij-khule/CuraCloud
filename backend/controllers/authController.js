@@ -74,8 +74,17 @@ const login = async (req, res) => {
   }
 };
 
-// ✅ EXPORT BOTH FUNCTIONS PROPERLY
-module.exports = {
-  register,
-  login
+// GET ALL DOCTORS
+const getDoctors = async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT id, name, email FROM users WHERE role='doctor'"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json("Server error");
+  }
 };
+
+module.exports = { register, login, getDoctors };
+
