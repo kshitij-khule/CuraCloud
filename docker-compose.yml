@@ -4,14 +4,14 @@ services:
   db:
     image: postgres:15-alpine
     environment:
-    POSTGRES_USER: ${DB_USER}
-    POSTGRES_PASSWORD: ${DB_PASSWORD}
-    POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - curacloud_net
-  
+
   backend:
     build: ./backend
     environment:
@@ -27,9 +27,11 @@ services:
       - curacloud_net
 
   frontend:
-    build: ./frontend
+    build: ./client
     ports:
       - "80:80"
+    depends_on:
+      - backend
     networks:
       - curacloud_net
 
@@ -39,7 +41,3 @@ volumes:
 networks:
   curacloud_net:
     driver: bridge
-
-
-  
-  
