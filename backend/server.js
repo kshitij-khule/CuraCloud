@@ -24,8 +24,44 @@ app.use("/api/sos", require("./routes/sosRoutes"));
 // DB Connection
 const pool = require("./config/db");
 
+const initDB = async () => {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS users (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) UNIQUE NOT NULL,
+      password VARCHAR(255) NOT NULL,
+      role VARCHAR(20) NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS appointments (
+      id SERIAL PRIMARY KEY,
+      doctor_id INTEGER REFERENCES users(id),
+      patient_id INTEGER REFERENCES users(id),
+      date VARCHAR(100)
+    );
+    CREATE TABLE IF NOT EXISTS prescriptions (
+      id SERIAL PRIMARY KEY,
+      doctor_id INTEGER REFERENCES users(id),
+      patient_id INTEGER REFERENCES users(id),
+      medicines TEXT,
+      notes TEXT
+    );
+    CREATE TABLE IF NOT EXISTS medicines (
+      id SERIAL PRIMARY KEY,
+      pharmacy_id INTEGER REFERENCES users(id),
+      name VARCHAR(100),
+      stock INTEGER,
+      price DECIMAL(10,2) DEFAULT 0
+    );
+  `);
+  console.log("Database tables ready ✅");
+};
+
 pool.connect()
-  .then(() => console.log("PostgreSQL Connected ✅"))
+  .then(() => {
+    console.log("PostgreSQL Connected ✅");
+    initDB();
+  })
   .catch(err => console.log(err));
 
 // Test route
