@@ -20,6 +20,7 @@ app.use("/api/records", require("./routes/recordRoutes"));
 app.use("/api/pharmacy", require("./routes/pharmacyRoutes"));
 console.log("SOS ROUTE LOADED");
 app.use("/api/sos", require("./routes/sosRoutes"));
+app.use("/api/upload", require("./routes/uploadRoutes"));
 
 // DB Connection
 const pool = require("./config/db");
