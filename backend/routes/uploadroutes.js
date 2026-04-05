@@ -28,7 +28,8 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 });
 
 // Get presigned URL
-router.get("/file/:key(*)", async (req, res) => {
+router.get("/file/*", async (req, res) => {
+  const key = req.params[0];
   try {
     const command = new PutObjectCommand({
       Bucket: "curacloud-prescriptions",
