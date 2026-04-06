@@ -52,7 +52,7 @@ A full-stack healthcare web application deployed on AWS with a containerized, pr
 - Tested the full multi-container setup locally before pushing to production
 
 ### 2. EC2 Deployment (ap-south-1)
-![EC2-instance](screenshots/AWS-EC2_instance)
+![EC2-instance](screenshots/AWS-EC2_instance.png)
 - Launched and configured an **AWS EC2** instance in the Mumbai region
 - Set up **Security Groups** with minimal exposure:
   - Port 80 (HTTP) open to the public
