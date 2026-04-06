@@ -46,6 +46,7 @@ A full-stack healthcare web application deployed on AWS with a containerized, pr
 ## ☁️ My Cloud & DevOps Contributions
 
 ### 1. Containerization with Docker
+![Docker-Containers](screenshots/Docker-containers.png)
 - Wrote individual **Dockerfiles** for the React frontend and Node.js/Express backend
 - Set up **Docker Compose** to orchestrate all containers (frontend, backend, Nginx)
 - Configured **Nginx as a reverse proxy** to route traffic between services and serve the frontend
