@@ -52,6 +52,7 @@ A full-stack healthcare web application deployed on AWS with a containerized, pr
 - Tested the full multi-container setup locally before pushing to production
 
 ### 2. EC2 Deployment (ap-south-1)
+![EC2-instance](screenshots/AWS-EC2_instance)
 - Launched and configured an **AWS EC2** instance in the Mumbai region
 - Set up **Security Groups** with minimal exposure:
   - Port 80 (HTTP) open to the public
@@ -59,24 +60,29 @@ A full-stack healthcare web application deployed on AWS with a containerized, pr
 - Deployed the Dockerized application on EC2 using Docker Compose
 
 ### 3. Managed Database with AWS RDS
+![AWS_RDS-db](screenshots/AWS_RDS_databse.png)
 - Set up a **PostgreSQL instance on AWS RDS** — separated from EC2 for reliability and managed backups
 - Configured **VPC Security Groups** so only the EC2 instance can reach RDS on port 5432
 - Database is not publicly accessible
 
 ### 4. IAM — Least Privilege Access
+![IAM-roles](screenshots/AWS-IAM-Roles.png)
 - Created an **IAM user** with only the permissions required for deployment tasks
 - Created an **IAM role** with least-privilege policies and attached it directly to the EC2 instance
 - EC2 accesses AWS services (S3, Secrets Manager) via the instance role — no hardcoded credentials anywhere
 
 ### 5. Secrets Management
+![Secrets-Manager](screenshots/AWS_Secrets-Manager.png)
 - Stored all credentials (DB connection string, API keys) in **AWS Secrets Manager**
 - Backend application fetches secrets at runtime — no `.env` files or plaintext credentials in the codebase or environment
 
 ### 6. S3 for File Storage
+![S3-bucket-prescriptions](screenshots/S3_bucket_prescriptions.png)
 - Created an **S3 bucket** for prescription file uploads
 - Backend generates **presigned URLs** for secure, time-limited access to uploaded files — users never get direct S3 access
 
 ### 7. Monitoring & Alerts
+![CloudWatch-Alarm](screenshots/AWS-CloudWatch-CPU-Alarm.png)
 - Configured a **CloudWatch alarm** on EC2 CPU utilization
 - Connected alarm to an **SNS topic** with email notifications so the team gets alerted on high load
 
@@ -85,6 +91,8 @@ A full-stack healthcare web application deployed on AWS with a containerized, pr
 - Never pushed directly to `main`; all changes went through pull requests
 - Deployment flow: local machine → GitHub → EC2
 
+ ### 9. Working-app
+ ![Working-url](screenshots/Working_url.png)
 ---
 
 ## 🛠️ Tech Stack
